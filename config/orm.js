@@ -4,29 +4,31 @@ var orm = {
     selectAll: (cb) => {
         connection.query("SELECT * FROM burgers; ", (err, result) => {
             if (err) throw err;
-            // do something with result
             cb(result);
         });
     },
     insertOne: (whatToInsert, cb) => {
         connection.query("INSERT INTO burgers (burger_name, devoured) VALUES (?, false);", [whatToInsert], (err, result) => {
             if (err) throw err;
-            // do something 
             cb(result);
         });
     },
-    updateOne: (whatToUpdate, cb) => {
+    updateOne: (newState, whatToUpdate, cb) => {
+        // convert booleans to int for mysql and set new state
+        if (newState == 'false') {
+            newState = 1;
+        } else {
+            newState = 0;
+        }
         connection.query(
-            "UPDATE burgers SET devoured = true WHERE burger_name = ?;",
-            [whatToUpdate],
+            "UPDATE burgers SET devoured = ? WHERE id = ?;",
+            [newState, whatToUpdate],
             function (err, result) {
                 if (err) throw err;
-                console.log("You updated burger " + whatToUpdate);
                 cb(result);
             }
         );
     }
 };
-
 
 module.exports = orm;

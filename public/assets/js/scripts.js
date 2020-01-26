@@ -1,16 +1,13 @@
 
 $(function () {
-    //console.log('loaded');
 
-    $("#burgerForm").on("submit", function (event) {
-        // Make sure to preventDefault on a submit event.
-        event.preventDefault();
+    $("#burgerForm").on("submit", (e) => {
+        e.preventDefault();
 
         var newObj = {
             name: $("#newBurger").val().trim()
         };
 
-        // Send the POST request.
         $.ajax("/api/burgers", {
             type: "POST",
             data: newObj
@@ -20,6 +17,26 @@ $(function () {
         }
         );
     });
+
+    // handle devour event
+    $(".burger-eater").on("click", (e) => {
+
+        // get id and devour state from clicked object
+        const id = e.target.dataset.id;
+        const devourState = e.target.dataset.isdevoured;
+        // prep devourState to send in req.body
+        var oldDevourState = {
+            devoured: devourState
+        };
+
+        // send id and devourState to controller route
+        $.ajax("/api/burgers/" + id, {
+            type: "PUT",
+            data: oldDevourState
+        }).then(() => {
+            location.reload();
+        })
+    })
 
 
 });

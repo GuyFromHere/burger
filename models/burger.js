@@ -11,8 +11,9 @@ const burger = {
             cb(res);
         });
     },
-    update: (data, cb) => {
-        orm.updateOne(data, (res) => {
+    update: (devourState, id, cb) => {
+        // pass devourState from browser > controller > model and finally to orm
+        orm.updateOne(devourState, id, (res) => {
             cb(res);
         });
     }
