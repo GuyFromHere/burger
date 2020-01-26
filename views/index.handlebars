@@ -1,7 +1,12 @@
 <h1>Eat Da Burger</h1>
 
-<form action="/" method="POST">
-    <input type="text" name="newBurger" placeholder="Enter burger here">
-    <br>
-    <input type="button" id="submitBtn" value="Add burger">
-</form>
+<ul>
+    {{#each burger}}
+    <li>{{burger_name}}</li>
+    {{/each}}
+    <form id="burgerForm">
+        <li><input type="text" id="newBurger" placeholder="Enter burger here"></li>
+        <br>
+        <button type="submit" id="submitBtn">Add burger</button>
+    </form>
+</ul>

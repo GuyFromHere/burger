@@ -1,38 +1,32 @@
 const connection = require('./connections');
 
-var ORM = {
-    selectAll: function () {
-        connection.query(`SELECT * FROM burgers;`, (err, result) => {
+var orm = {
+    selectAll: (cb) => {
+        connection.query("SELECT * FROM burgers; ", (err, result) => {
             if (err) throw err;
             // do something with result
-            console.log(result);
-        })
-    },
-    insertOne: function (whatToInsert) {
-        var queryString = "INSERT INTO burgers (burger_name, devoured) VALUES (?, false);";
-        console.log(queryString);
-        connection.query(queryString, [whatToInsert], function (err, result) {
-            if (err) throw err;
-            // do something 
-            console.log('Insert successful');
+            cb(result);
         });
     },
-    updateOne: function (whatToUpdate) {
-        var queryString =
-            "UPDATE burgers SET devoured = true WHERE burger_name = ?;";
+    insertOne: (whatToInsert, cb) => {
+        connection.query("INSERT INTO burgers (burger_name, devoured) VALUES (?, false);", [whatToInsert], (err, result) => {
+            if (err) throw err;
+            // do something 
+            cb(result);
+        });
+    },
+    updateOne: (whatToUpdate, cb) => {
         connection.query(
-            queryString,
+            "UPDATE burgers SET devoured = true WHERE burger_name = ?;",
             [whatToUpdate],
             function (err, result) {
                 if (err) throw err;
                 console.log("You updated burger " + whatToUpdate);
+                cb(result);
             }
         );
     }
 };
 
-/* ORM.insertOne('Turkey Burger')
-ORM.updateOne('Hamburger');
-ORM.selectAll(); */
 
-module.exports = ORM;
+module.exports = orm;
