@@ -1,27 +1,33 @@
 <div class="main">
     <h1>Eat Da Burger!</h1>
     <div class="container">
-        <ul>
-            {{#each burger}}
-            {{#unless devoured}}
-            {{> burger-options devoured=false}}
-            {{/unless}}
-            {{/each}}
-        </ul>
-        <ul>
-            {{#each burger}}
-            {{#unless devoured}}
-            {{> burger-buttons devoured=false}}
-            {{/unless}}
-            {{/each}}
-        </ul>
-        <ul>
-            {{#each burger}}
-            {{#if devoured}}
-            {{> burger-options devoured=true}}
-            {{/if}}
-            {{/each}}
-        </ul>
+        <div class="col-left">
+            <ul>
+                {{#each burger}}
+                {{#unless devoured}}
+                {{> burger-options devoured=false}}
+                {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+        <div class="col-mid">
+            <ul>
+                {{#each burger}}
+                {{#unless devoured}}
+                {{> burger-buttons devoured=false}}
+                {{/unless}}
+                {{/each}}
+            </ul>
+        </div>
+        <div class="col-right">
+            <ul>
+                {{#each burger}}
+                {{#if devoured}}
+                {{> burger-options devoured=true}}
+                {{/if}}
+                {{/each}}
+            </ul>
+        </div>
     </div>
     <form id="burgerForm">
         <input type="text" id="newBurger">
