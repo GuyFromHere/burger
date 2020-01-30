@@ -1,31 +1,45 @@
-* {
-    font-family: Arial, Helvetica, sans-serif;
-}
+
 
 body {
-    background-color: orange;
     text-align: center;
+}
+
+.main h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: red;
 }
 
 .container {
     display: grid;
-    grid-template-columns: 35% 20% 35%;
-    width: 80vw;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-rows: 80% 20%;
     margin: 0 auto;
+    background-image: url('../img/hamburger.jpg');
+    border: 3px solid orange;
+    border-radius: 50%;
+    height: 400px;
+    width: 772px; 
 }
-
 
 .col-left {
     grid-column: 1;
+    grid-row: 1;
 }
 
 .col-mid {
     grid-column: 2;
+    grid-row: 1;
 }
 
 .col-right {
     grid-column: 3;
+    grid-row: 1;
 }
+
+.form-container {
+    grid-column: 1 / 4;
+} 
+
 
 li {
     list-style-type: none;
@@ -33,17 +47,28 @@ li {
     margin: 2px;
 }
 
-.main h1 {
-    color: red;
+.burger-eater {
+    border: 0;
+    background-color: red;
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+}
+
+label {
+    font-family: Arial Black, Helvetica, sans-serif;
+    color: white;
 }
 
 #newBurger {
     padding: 10px;
+    margin-right: 0;
 }
 
+
 #submitBtn {
-    padding: 10px;
+    padding: 11px;
     margin: 10px;
+    margin-left: -4px;
     background-color: blue;
     color: white;
     border: 0;
@@ -53,16 +78,23 @@ li {
     margin-top: 5px;
 }
 
+#burger-eater {
+    font-family: 'Impact';
+}
+
 ul {
     padding: 0;
 }
 
 .burger {
-    background-color: white;
+    background-color: orange;
+    border-radius: 5px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 .devoured {
     padding: 5px;
     border: 1px inset grey;
+    background-color: white;
     color: darkgray;
 }
